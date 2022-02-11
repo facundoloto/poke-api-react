@@ -28,7 +28,7 @@ export default function Home(){
     },[]) 
 return(
 <div>
-<Navbar bg="info" variant="light" fixed="top">
+<Navbar className='navBg' variant="light" fixed="top">
     <Container>
     <Navbar.Brand href="#home">PokeApi</Navbar.Brand>
     <Nav className="me-auto">
@@ -41,7 +41,7 @@ return(
   </Navbar>
 <div className="home">
 <img src={logo}/>
-<p className="text-center">
+<p className="text-center text-dark">
 Esta app sirve como buscador de Pokémon según su región,
 todo esto funciona gracias a pokeApi que es una base de datos de Pokémon creada por paul hallett y otros colaboradores  en todo el mundo, gracias a pokeApi esta app consume toda su información.
 </p>

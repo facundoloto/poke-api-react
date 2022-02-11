@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-
+.navBg{
+background-color: #00B4D8 !important;
+}
 .home{
   max-width:100vw;
   color: #fff;
@@ -10,7 +12,7 @@
   justify-content:center;
   align-content: center;
   flex-direction: column;
-  background-color: #2a343a;
+  background-color: #90E0EF;
   margin-top:2em;
 -webkit-box-shadow: 1px 5px 19px 5px #696969; 
 box-shadow: 1px 5px 19px 5px #696969;

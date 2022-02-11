@@ -1,0 +1,66 @@
+.normal,.steel{
+background-image: url('../../img/bg-normal.jpg');
+background-size: cover;
+
+}
+.water,.ice{
+    background-image:url('../../img/agua.gif');
+    background-size: cover;
+    
+}
+.fire{
+    background-image:url('../../img/fuego.gif');
+    background-size: cover;
+   
+}
+.electric{
+background-image: url('../../img/bg-electric.png');
+background-size: cover;
+
+}
+.dragon,.flying{
+background-image: url('../../img/bg-flying.jpg');
+background-size: cover;
+    
+    }
+
+.ground,.rock,.fighting{
+background-image: url('../../img/bg-ground.jpg');
+background-size: cover;
+
+}
+.psychic{
+background-image:url('../../img/violeta.gif');
+background-size: cover;
+
+}
+
+.dark,.ghost{
+background-image: url('../../img/bg-dark.jpg');
+background-size: cover;
+
+}
+
+.grass,.bug{
+    background-image:url('../../img/hierba.gif');
+    background-size: cover;
+   
+}
+
+.poison{
+
+    background-image: url('../../img/bg-poison.jpg');
+    background-size: cover;
+
+}
+
+
+.fairy{
+    background-image: url('../../img/bg-fairy.jpg');
+    background-size: cover;
+
+}
+
+
+
+

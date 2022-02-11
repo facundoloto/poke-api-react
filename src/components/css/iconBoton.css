@@ -1,0 +1,97 @@
+button{
+margin-right:16px;    
+}
+#firts::after{
+content: "";
+background-image: url("../../img/charmander.png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+#seconds::after{
+content: "";
+background-image: url("../../img/squirtle.png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+
+#third::after{
+content: "";
+background-image: url("../../img/bullbasaur.png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+
+#quarter::after{
+content: "";
+background-image: url("../../img/snorlax\ \(1\).png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+
+#fifth::after{
+content: "";
+background-image: url("../../img/jigglypuff.png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+#sixth::after{
+content: "";
+background-image: url("../../img/eevee.png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+#seventh::after{
+content: "";
+background-image: url("../../img/pikachu.png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+#eighth::after{
+content: "";
+background-image: url("../../img/psyduck.png");
+background-size:cover;
+display:inline-block;
+width:22px;
+height:22px;
+position:relative;
+top:3px;
+left:3px;}
+.card h4::before{
+content: "";
+background-image: url("../../img/pokebola.png");
+background-size:cover;
+display:inline-block;
+width:15px;
+height:15px;
+position:relative;
+top:1px;
+right:4px;
+}

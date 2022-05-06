@@ -5,27 +5,31 @@ import logo from '../img/logo2.png'
 import load from '../img/loader.gif'
 import './css/bg.css'
 import './css/home.css'
+
 export default function Home(){
     const [pokemons, setPokemons] = useState([]);
     const [display, setDisplay] = useState('none');
     const getAllPoke=async (min,max)=>{
+      let arr=[]
       setPokemons([])
-     let arr=[]
-   console.log(min +" "+max)
    for(let i=min;i<max;i++){
       setDisplay("block")
-     let response=await fetch(`https://pokeapi.co/api/v2/pokemon/${i+1}`) //los await sirve para que se vuelva sincrono,osea que lo que sigue despuesde await espere hasta que termine de ejecutar
-     let data=await response.json()
-      arr.push(data) 
-      console.log(arr) 
+      try {
+       fetch(`https://pokeapi.co/api/v2/pokemon/${i+1}`) //los await sirve para que se vuelva sincrono,osea que lo que sigue despuesde await espere hasta que termine de ejecutar
+        .then((response) => {
+          return response.json()
+        })
+        .then((data) => {
+          arr.push(data)
+        })
+      } catch (error) {
+        console.error(error);
+      }
     }
-   console.log(arr)
-   setDisplay('none')
-  return( setPokemons(arr))
+    setDisplay('none')
+  console.log(pokemons)
+    return (arr)
   }
-  useEffect(async()=>{
-    await getAllPoke()
-    },[]) 
 return(
 <div>
 <Navbar className='navBg' variant="light" fixed="top">
@@ -48,22 +52,23 @@ todo esto funciona gracias a pokeApi que es una base de datos de Pokémon creada
 </div>
 <div className={'loader '+display}><img src={load}/></div>
   <div className='list' id="list">
-  
   {
-  pokemons.map((data)=>{
-    return(
-        <div className="card " key={data.id} >
-        <div className={"card-img-top " + data.types[0].type.name} id="card">
-        <img className="" src={data.sprites.front_default} alt="Card image cap" id="imgPoke" />
-        </div>
-        <div className="card-body" >
-        <h4 className="card-title text-center text-card" id="namePokemon">{data.name}</h4>
-        <p className="card-text text-center text-card " id="idPokemon">{data.id}</p>
-        <p className="card-text text-center text-card " id="abilityPokemon">{data.abilities[0].ability.name}</p>
-        </div>
-        </div>
-    )})
-  }
+    pokemons.map((data)=>{
+      console.log(data.name)
+      return(
+          <div className="card " key={data.id} >
+          <div className={"card-img-top " + data.types[0].type.name} id="card">
+          <img className="" src={data.sprites.front_default} alt="Card image cap" id="imgPoke" />
+          </div>
+          <div className="card-body" >
+          <h4 className="card-title text-center text-card" id="namePokemon">{data.name}</h4>
+          <p className="card-text text-center text-card " id="idPokemon">{data.id}</p>
+          <p className="card-text text-center text-card " id="abilityPokemon">{data.abilities[0].ability.name}</p>
+          </div>
+          </div>
+      )})
+    }
+
   </div>
 
 </div>

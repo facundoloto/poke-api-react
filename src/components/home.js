@@ -1,5 +1,4 @@
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
-import { Link, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import logo from '../img/logo2.png';
 import load from '../img/loader.gif';
@@ -10,34 +9,55 @@ export default function Home() {
 
   const [pokemons, setPokemons] = useState([]);
   const [display, setDisplay] = useState('none');
+  const [displayMensagge, setDisplayMensagge] = useState("none");
+
+  const randomNumber = function random(min, max) {
+    return Math.floor((Math.random() * (max - min + 1)) + min);
+  };
+
+  const timerMessage = ()=> {
+    setTimeout(() => {
+    setDisplayMensagge('block');
+   }, 3000); 
+  };
+ 
+const clearMessage = ()=> {
+  clearTimeout(timerMessage);
+};
 
   const getAllPoke = async (min, max) => {
+
 
     let arr = [];
     setPokemons([]);
 
     for (let i = min; i < max; i++) {
-      setDisplay("block")
+      setDisplay("block");
+      timerMessage();
+      
       try {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`) //los await sirve para que se vuelva sincrono,osea que lo que sigue despuesde await espere hasta que termine de ejecutar
-          .then((response) => {
-            return response.json()
-          })
-          .then((data) => {
-            arr.push(data)
-          });
+        const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`); //los await sirve para que se vuelva sincrono,osea que lo que sigue despuesde await espere hasta que termine de ejecutar
+        const pokemons = await data.json();
+        arr.push(pokemons);
       } catch (error) {
         alert(error);
       }
+
     }
-
+    clearMessage();
+    setDisplayMensagge('none');
     setDisplay('none');
+    setPokemons(arr);
 
-    return (arr)
-  }
+  };
+
+  useEffect(() => {
+    getAllPoke(randomNumber(153, 200), randomNumber(201, 250)); //pokemons randmon that are between 153 and 250
+  }, []);
 
   return (
     <div>
+
       <Navbar className='navBg' variant="light" fixed="top">
         <Container>
           <Navbar.Brand href="#home">PokeApi</Navbar.Brand>
@@ -49,6 +69,7 @@ export default function Home() {
           </Nav>
         </Container>
       </Navbar>
+
       <div className="home">
         <img src={logo} />
         <p className="text-center text-dark">
@@ -56,11 +77,16 @@ export default function Home() {
           todo esto funciona gracias a pokeApi que es una base de datos de Pokémon creada por paul hallett y otros colaboradores  en todo el mundo, gracias a pokeApi esta app consume toda su información.
         </p>
       </div>
-      <div className={'loader ' + display}><img src={load} /></div>
+
+      <h3 className={displayMensagge}>¡Espera tus pokemon ya llegan🐾!</h3>
+
+      <div className={'loader ' + display}>
+        <img src={load} />
+      </div>
+
       <div className='list' id="list">
         {
           pokemons.map((data) => {
-            console.log(data.name)
             return (
               <div className="card " key={data.id} >
                 <div className={"card-img-top " + data.types[0].type.name} id="card">
@@ -76,7 +102,7 @@ export default function Home() {
           })
         }
       </div>
-    </div>
 
+    </div>
   )
 };

@@ -1,7 +1,8 @@
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import logo from '../img/logo2.png';
-import load from '../img/loader.gif';
+import load from '../img/pikachu-gif.gif';
+import 'animate.css';
 import './css/bg.css';
 import './css/home.css';
 
@@ -9,32 +10,20 @@ export default function Home() {
 
   const [pokemons, setPokemons] = useState([]);
   const [display, setDisplay] = useState('none');
-  const [displayMensagge, setDisplayMensagge] = useState("none");
+  const [displayMensagge, setDisplayMensagge] = useState('none');
 
   const randomNumber = function random(min, max) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
   };
 
-  const timerMessage = ()=> {
-    setTimeout(() => {
-    setDisplayMensagge('block');
-   }, 3000); 
-  };
- 
-const clearMessage = ()=> {
-  clearTimeout(timerMessage);
-};
-
   const getAllPoke = async (min, max) => {
-
 
     let arr = [];
     setPokemons([]);
 
     for (let i = min; i < max; i++) {
       setDisplay("block");
-      timerMessage();
-      
+      setDisplayMensagge('block');
       try {
         const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`); //los await sirve para que se vuelva sincrono,osea que lo que sigue despuesde await espere hasta que termine de ejecutar
         const pokemons = await data.json();
@@ -42,17 +31,18 @@ const clearMessage = ()=> {
       } catch (error) {
         alert(error);
       }
-
     }
-    clearMessage();
-    setDisplayMensagge('none');
-    setDisplay('none');
-    setPokemons(arr);
+
+    if (arr.length > 0) {
+      setDisplay("none");
+      setDisplayMensagge("none");
+      setPokemons(arr);
+    }
 
   };
 
   useEffect(() => {
-    getAllPoke(randomNumber(153, 200), randomNumber(201, 250)); //pokemons randmon that are between 153 and 250
+    getAllPoke(randomNumber(153, 200), randomNumber(201, 250)); //pokemons randmon what are between 153 and 250
   }, []);
 
   return (
@@ -78,15 +68,15 @@ const clearMessage = ()=> {
         </p>
       </div>
 
-      <h3 className={displayMensagge}>¡Espera tus pokemon ya llegan🐾!</h3>
-
-      <div className={'loader ' + display}>
+      <div className={ 'loader ' + display } >
+        <h3 className={ "animate__animated animate__fadeIn"}>¡Espera tus pokemon ya llegan🐾!</h3>
         <img src={load} />
       </div>
 
       <div className='list' id="list">
         {
           pokemons.map((data) => {
+
             return (
               <div className="card " key={data.id} >
                 <div className={"card-img-top " + data.types[0].type.name} id="card">
